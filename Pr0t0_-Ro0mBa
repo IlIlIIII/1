@@ -701,6 +701,24 @@ game:GetService("RunService").RenderStepped:Connect(function()
 	LH.C0 = LH.C0:Lerp(CF(-0.5+0*math.cos(sine/13),-90+0*math.cos(sine/13),0+0*math.cos(sine/13))*ANGLES(RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13))),.3)
 	reanim['Pet Cyber Critter FriendAccessory'].Handle.AccessoryWeld.C0 = reanim['Pet Cyber Critter FriendAccessory'].Handle.AccessoryWeld.C0:Lerp(CF(0+0*math.cos(sine/13),2.4+0*math.cos(sine/13),0+0*math.cos(sine/13))*ANGLES(RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13))),.3)		
 end)
+local function Chat(Message)
+	game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(Message,"All")
+end
+
+local Cooldown = false
+local UserInputService = game:GetService("UserInputService")
+UserInputService.InputBegan:Connect(function(Input, chatting)
+	if stopall == false then
+		if Input.KeyCode == Enum.KeyCode.T and Cooldown == false and not chatting then
+			Cooldown = true
+			local Text = {"I think I sucked up something bad...","Hello?","I'm a roomba!",":3","-w-","brrrrr","I can do this all day","That dust was delicious","Me smol","Cheese","Was that an ant?","Beep","Cheese is solid milk","I wish I could go faster","Toaster noise"}
+			local ChooseText = Text[math.random(#Text)]
+			Chat(ChooseText)
+			wait(2)
+			Cooldown = false
+		end
+	end
+end)
 
 NominatedDeadChar["Torso"].Parent = nil
 NominatedDeadChar["Right Arm"].Parent = nil
