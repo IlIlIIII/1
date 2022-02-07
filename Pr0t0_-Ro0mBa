@@ -728,6 +728,7 @@ local function chatfunc(textt,glitchy)
 		sayingstuff.StudsOffset = Vector3.new(0,2,0)
 		sayingstuff.Adornee = reanim['Pet Cyber Critter FriendAccessory'].Handle
 		sayingstuff.Name = "TalkingBillBoard"
+		sayingstuff.AlwaysOnTop = true
 		local sayingstuff2 = Instance.new("TextLabel",sayingstuff)
 		sayingstuff2.BackgroundTransparency = 1
 		sayingstuff2.BorderSizePixel = 0
