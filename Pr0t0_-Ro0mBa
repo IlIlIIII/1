@@ -18,7 +18,7 @@ coroutine.wrap(z)()
 
 for i, v in pairs(Player.Character:GetDescendants()) do
 	if v:IsA("Accessory") and v.Name ~= "Pet Cyber Critter FriendAccessory" then
-		v:Destroy()
+		v.Parent = nil
 	end
 end
 
@@ -689,7 +689,7 @@ local ChMove = false
 game:GetService("RunService").RenderStepped:Connect(function()
 	sine = sine +1
 	Character.Humanoid.WalkSpeed = Speed
-
+	workspace.Camera.CameraSubject = reanim['Pet Cyber Critter FriendAccessory'].Handle
 	NECK.C0 = NECK.C0:Lerp(CF(0+0*math.cos(sine/13),-4+0*math.cos(sine/13),-0.5+0*math.cos(sine/13))*ANGLES(RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13))),.3)
 	RJ.C0 = RJ.C0:Lerp(CF(0+0*math.cos(sine/13),0+0*math.cos(sine/13),0+0*math.cos(sine/13))*ANGLES(RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13))),.3)
 	RS.C0 = RS.C0:Lerp(CF(1+0*math.cos(sine/13),-90+0*math.cos(sine/13),0+0*math.cos(sine/13))*ANGLES(RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13))),.3)
@@ -813,6 +813,14 @@ UserInputService.InputBegan:Connect(function(Input, chatting)
 		if Input.KeyCode == Enum.KeyCode.T and Cooldown == false and not chatting then
 			Cooldown = true
 			local Text = {"I think I sucked up something bad...","Hello?","I'm a roomba!",":3","-w-","brrrrr","I can do this all day","That dust was delicious","Me smol","Cheese","Was that an ant?","Beep","Cheese is solid milk","I wish I could go faster","Toaster noise"}
+			local ChooseText = Text[math.random(#Text)]
+			Chat(ChooseText)
+			wait(2)
+			Cooldown = false
+		end
+		if Input.KeyCode == Enum.KeyCode.Y and Cooldown == false and not chatting then
+			Cooldown = true
+			local Text = {"Ouch" , "Owie" , ">_<" , "Yikes" , "A-","Ow",">w<",";-;","AAA","Youch","That hurt","xwx","There's a wall?"}
 			local ChooseText = Text[math.random(#Text)]
 			Chat(ChooseText)
 			wait(2)
