@@ -16,12 +16,6 @@ local function z()
 end
 coroutine.wrap(z)()
 
-for i, v in pairs(Player.Character:GetDescendants()) do
-	if v:IsA("Accessory") and v.Name ~= "Pet Cyber Critter FriendAccessory" then
-		v.Parent = nil
-	end
-end
-
 Bypass = "death"
 
 HumanDied = false
@@ -844,6 +838,11 @@ NominatedDeadChar["Right Arm"].Parent = nil
 NominatedDeadChar["Left Arm"].Parent = nil
 NominatedDeadChar["Right Leg"].Parent = nil
 NominatedDeadChar["Left Leg"].Parent = nil
+for i, v in pairs(NominatedDeadChar:GetDescendants()) do
+	if v:IsA("Accessory") and v.Name ~= "Pet Cyber Critter FriendAccessory" then
+		v.Parent = nil
+	end
+end
 workspace.Camera.CameraSubject = reanim['Pet Cyber Critter FriendAccessory'].Handle
 
 chatfunc("Proto Roomba go beep")
