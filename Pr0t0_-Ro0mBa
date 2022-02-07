@@ -668,6 +668,10 @@ LH.C0 = CF(0,0,0)*ANGLES(RAD(0),RAD(0),RAD(0))
 RS.C0 = CF(0,0,0)*ANGLES(RAD(0),RAD(0),RAD(0))
 LS.C0 = CF(0,0,0)*ANGLES(RAD(0),RAD(0),RAD(0))
 
+function swait(t)
+	game:GetService('RunService').Stepped:wait()
+end
+
 local sine = 0
 
 function hatset(yes,part,c1,c0,nm)
@@ -683,13 +687,6 @@ local Mode = "None"
 local Speed = 20
 local ChMove = false
 game:GetService("RunService").RenderStepped:Connect(function()
-	local Torsovelocity = (RootPart.Velocity * Vector3.new(1, 0, 1)).magnitude
-	if Torsovelocity >= Speed - Speed + 1 then
-		ChMove = true
-	elseif Torsovelocity < Speed - Speed + 1 then	
-		ChMove = false
-	end
-
 	sine = sine +1
 	Character.Humanoid.WalkSpeed = Speed
 
@@ -701,8 +698,111 @@ game:GetService("RunService").RenderStepped:Connect(function()
 	LH.C0 = LH.C0:Lerp(CF(-0.5+0*math.cos(sine/13),-90+0*math.cos(sine/13),0+0*math.cos(sine/13))*ANGLES(RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13))),.3)
 	reanim['Pet Cyber Critter FriendAccessory'].Handle.AccessoryWeld.C0 = reanim['Pet Cyber Critter FriendAccessory'].Handle.AccessoryWeld.C0:Lerp(CF(0+0*math.cos(sine/13),2.4+0*math.cos(sine/13),0+0*math.cos(sine/13))*ANGLES(RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13))),.3)		
 end)
+
 local function Chat(Message)
 	game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(Message,"All")
+end
+
+local function randomstring()
+	local length = math.random(10,20)
+	local array = {}
+	for i = 1,length do
+		array[i] = string.char(math.random(32,126))
+	end
+	return table.concat(array)
+end
+local aaz = Instance.new("BillboardGui",reanim['Pet Cyber Critter FriendAccessory'].Handle)
+aaz.Name = "TalkingBillBoard"
+local function chatfunc(textt,glitchy)
+	local text = string.gsub(string.gsub(textt,"​",""),"%c","")
+	if string.sub(text,1,3) == "/e " or string.sub(text,1,3) == "/w " or string.sub(text,1,3) == "/c " then
+		return
+	end
+	local sayit = coroutine.wrap(function()
+		local oldthing = reanim['Pet Cyber Critter FriendAccessory'].Handle:FindFirstChild("TalkingBillBoard")
+		if oldthing then
+			oldthing:Destroy()
+		end
+		local sayingstuff = Instance.new("BillboardGui",reanim['Pet Cyber Critter FriendAccessory'].Handle)
+		sayingstuff.Size = UDim2.new(0,9999,0.50,0)
+		sayingstuff.StudsOffset = Vector3.new(0,2,0)
+		sayingstuff.Adornee = reanim['Pet Cyber Critter FriendAccessory'].Handle
+		sayingstuff.Name = "TalkingBillBoard"
+		local sayingstuff2 = Instance.new("TextLabel",sayingstuff)
+		sayingstuff2.BackgroundTransparency = 1
+		sayingstuff2.BorderSizePixel = 0
+		sayingstuff2.Text = ""
+		sayingstuff2.Font = "Cartoon"
+		sayingstuff2.TextScaled = true
+		sayingstuff2.TextStrokeTransparency = 0
+		coroutine.resume(coroutine.create(function()
+			while stopall == false and sayingstuff2:IsDescendantOf(game) do
+				local hBRUH,sBRUH,vBRUH = Color3.new(0.168627, 0.752941, 1)
+				sayingstuff2.TextColor3 = Color3.fromHSV(hBRUH,sBRUH,vBRUH/2)
+				swait()
+			end
+		end))
+		sayingstuff2.TextStrokeColor3 = Color3.fromRGB(0,0,0)
+		sayingstuff2.Size = UDim2.new(1,0,1,0)
+		local sayingstuff3 = Instance.new("TextLabel",sayingstuff)
+		sayingstuff3.BackgroundTransparency = 1
+		sayingstuff3.BorderSizePixel = 0
+		sayingstuff3.Text = ""
+		sayingstuff3.Font = "Cartoon"
+		sayingstuff3.TextScaled = true
+		sayingstuff3.TextStrokeTransparency = 0
+		coroutine.resume(coroutine.create(function()
+			while stopall == false and sayingstuff3:IsDescendantOf(game) do
+				sayingstuff3.TextColor3 = Color3.new(0.168627, 0.752941, 1)
+				swait()
+			end
+		end))
+		sayingstuff3.TextStrokeColor3 = Color3.fromRGB(0,0,0)
+		sayingstuff3.Size = UDim2.new(1,0,1,0)
+		coroutine.resume(coroutine.create(function()
+			while stopall == false and sayingstuff ~= nil do
+				swait()
+				if glitchy then
+					local fonts = {"Antique","Arcade","Arial","ArialBold","Bodoni","Cartoon","Code","Fantasy","Garamond","Gotham","GothamBlack","GothamBold","GothamSemibold","Highway","SciFi","SourceSans","SourceSansBold","SourceSansItalic","SourceSansLight","SourceSansSemibold"}
+					local randomfont = fonts[math.random(1,#fonts)]
+					sayingstuff2.Font = randomfont
+					sayingstuff3.Font = randomfont
+				end
+				--	sayingstuff2.Position = UDim2.new(0,math.random(-3,3),0,math.random(-3,3)) 
+				--	sayingstuff3.Position = UDim2.new(0,math.random(-3,3),0,math.random(-3,3)) 
+			end
+		end))
+		for i = 1,string.len(text) do
+			wait(0)
+			swait(2)
+			sayingstuff2.Text = string.sub(text,1,i)
+			sayingstuff3.Text = string.sub(text,1,i)
+			coroutine.resume(coroutine.create(function()
+				local g = Instance.new("Sound",game:GetService("Chat"))
+				g.SoundId = "rbxassetid://8174624579"
+				g.PlaybackSpeed = .8
+				g.Volume = 2
+				g.Name = randomstring()
+				g.PlayOnRemove = true
+				g:Play()
+				g:Destroy()
+			end))
+		end
+		swait(120)
+		for i = 1,50 do
+			swait()
+			--	sayingstuff2.Position = sayingstuff2.Position - UDim2.new(0,math.random(-3,3),0,math.random(-3,3))
+			--	sayingstuff3.Position = sayingstuff2.Position - UDim2.new(0,math.random(-3,3),0,math.random(-3,3)) 
+			--	sayingstuff2.Rotation = sayingstuff2.Rotation + math.random(-2,2)
+			--	sayingstuff3.Rotation = sayingstuff3.Rotation + math.random(-2,2)
+			sayingstuff2.TextStrokeTransparency = i/50
+			sayingstuff2.TextTransparency = sayingstuff2.TextStrokeTransparency
+			sayingstuff3.TextStrokeTransparency = sayingstuff2.TextStrokeTransparency
+			sayingstuff3.TextTransparency = sayingstuff2.TextStrokeTransparency
+		end
+		sayingstuff:Destroy()
+	end)
+	sayit()
 end
 
 local Cooldown = false
@@ -717,6 +817,16 @@ UserInputService.InputBegan:Connect(function(Input, chatting)
 			wait(2)
 			Cooldown = false
 		end
+		if Input.KeyCode == Enum.KeyCode.Comma and not chatting then
+			Speed = Speed -1
+			if Speed == 0 then Speed = 1 end
+			chatfunc("Speed - "..Speed)
+		end
+		if Input.KeyCode == Enum.KeyCode.Period and not chatting then
+			Speed = Speed +1
+			if Speed == 41 then Speed = 40 end
+			chatfunc("Speed + "..Speed)
+		end
 	end
 end)
 
@@ -726,3 +836,5 @@ NominatedDeadChar["Left Arm"].Parent = nil
 NominatedDeadChar["Right Leg"].Parent = nil
 NominatedDeadChar["Left Leg"].Parent = nil
 workspace.Camera.CameraSubject = reanim['Pet Cyber Critter FriendAccessory'].Handle
+
+chatfunc("Proto Roomba go beep")
