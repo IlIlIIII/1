@@ -16,6 +16,12 @@ local function z()
 end
 coroutine.wrap(z)()
 
+for i, v in pairs(Player.Character:GetDescendants()) do
+	if v:IsA("Accessory") and v.Name ~= "Pet Cyber Critter FriendAccessory" then
+		v:Destroy()
+	end
+end
+
 Bypass = "death"
 
 HumanDied = false
@@ -686,7 +692,7 @@ game:GetService("RunService").RenderStepped:Connect(function()
 
 	sine = sine +1
 	Character.Humanoid.WalkSpeed = Speed
-	
+
 	NECK.C0 = NECK.C0:Lerp(CF(0+0*math.cos(sine/13),-4+0*math.cos(sine/13),-0.5+0*math.cos(sine/13))*ANGLES(RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13))),.3)
 	RJ.C0 = RJ.C0:Lerp(CF(0+0*math.cos(sine/13),0+0*math.cos(sine/13),0+0*math.cos(sine/13))*ANGLES(RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13))),.3)
 	RS.C0 = RS.C0:Lerp(CF(1+0*math.cos(sine/13),-90+0*math.cos(sine/13),0+0*math.cos(sine/13))*ANGLES(RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13))),.3)
