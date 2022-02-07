@@ -683,7 +683,8 @@ local ChMove = false
 game:GetService("RunService").RenderStepped:Connect(function()
 	sine = sine +1
 	Character.Humanoid.WalkSpeed = Speed
-	workspace.Camera.CameraSubject = reanim['Pet Cyber Critter FriendAccessory'].Handle
+	Character.Humanoid.CameraOffset = Vector3.new(0,-3.5,0)
+--	workspace.Camera.CameraSubject = reanim['Pet Cyber Critter FriendAccessory'].Handle
 	NECK.C0 = NECK.C0:Lerp(CF(0+0*math.cos(sine/13),-4+0*math.cos(sine/13),-0.5+0*math.cos(sine/13))*ANGLES(RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13))),.3)
 	RJ.C0 = RJ.C0:Lerp(CF(0+0*math.cos(sine/13),0+0*math.cos(sine/13),0+0*math.cos(sine/13))*ANGLES(RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13))),.3)
 	RS.C0 = RS.C0:Lerp(CF(1+0*math.cos(sine/13),-90+0*math.cos(sine/13),0+0*math.cos(sine/13))*ANGLES(RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13))),.3)
@@ -843,6 +844,6 @@ for i, v in pairs(NominatedDeadChar:GetDescendants()) do
 		v.Parent = nil
 	end
 end
-workspace.Camera.CameraSubject = reanim['Pet Cyber Critter FriendAccessory'].Handle
+--workspace.Camera.CameraSubject = reanim['Pet Cyber Critter FriendAccessory'].Handle
 
 chatfunc("Proto Roomba go beep")
